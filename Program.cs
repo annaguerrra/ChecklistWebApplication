@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-List<Task> tasks = [];
+List<TTask> tasks = [];
 
-app.MapPost("Register", ([FromBody] Task task) =>
+app.MapPost("Register", ([FromBody] TTask task) =>
 {
     if (task.Title is null || task.Title.Length == 0)
         return Results.BadRequest("The title task must contain at least 1(one) character");
@@ -15,7 +15,7 @@ app.MapPost("Register", ([FromBody] Task task) =>
 
 app.MapGet("List", () => tasks);
 
-app.MapPatch("Check/{id}", (int id, [FromBody] Task task) =>
+app.MapPatch("Check/{id}", (int id, [FromBody] TTask task) =>
 {
     if (task.ID == id)
     {
@@ -26,11 +26,9 @@ app.MapPatch("Check/{id}", (int id, [FromBody] Task task) =>
 }); 
 app.Run();
 
-public class Task
+public class TTask
 {
     public int ID { get; set; }
     public string Title { get; set; } 
     public bool Conclued{ get; set; }
-    
-
 }
