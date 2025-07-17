@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChecklistWebApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b2676fe4e1d4ebba290237d6c37490f876e63ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3823cd39344abfbc03b5275ebb4b5f06e4be21b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChecklistWebApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChecklistWebApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

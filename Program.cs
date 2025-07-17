@@ -7,56 +7,30 @@ List<Task> tasks = [];
 
 app.MapPost("Register", ([FromBody] Task task) =>
 {
-    if (task.Name is null || task.Name.Length == 0)
-        return "The title task must contain at least 1(one) character";
+    if (task.Title is null || task.Title.Length == 0)
+        return Results.BadRequest("The title task must contain at least 1(one) character");
     tasks.Add(task);
-    return "Task added successfully";
+    return Results.Ok("Task added successfully");
 });
 
-app.MapGet("List", () tasks);
+app.MapGet("List", () => tasks);
 
-app.MapPatch("Check\{id}", (int id, [FromBody] Task task) =>
+app.MapPatch("Check/{id}", (int id, [FromBody] Task task) =>
 {
-    if(task.ID == id)
+    if (task.ID == id)
     {
         task.Conclued = true;
-        return "Task marked as conclued!";
+        return Results.Ok("Task marked as conclued!"); 
     }
+    return Results.BadRequest("Item not found.");
 }); 
 app.Run();
 
-public record Task(
-  int ID,
-  string Name,
-  bool Conclued
-);
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-List<Task> tasks = [];
-
-app.MapPost("Register", ([FromBody] Task task) =>
+public class Task
 {
-    if (task.Name is null || task.Name.Length == 0)
-        return "The title task must contain at least 1(one) character";
-    tasks.Add(task);
-    return "Task added successfully";
-});
+    public int ID { get; set; }
+    public string Title { get; set; } 
+    public bool Conclued{ get; set; }
+    
 
-app.MapGet("List", () tasks);
-
-app.MapPatch("Check\{id}", (int id, [FromBody] Task task) =>
-{
-    if(task.ID == id)
-    {
-        task.Conclued = true;
-        return "Task marked as conclued!";
-    }
-}); 
-app.Run();
-
-public record Task(
-  int ID,
-  string Name,
-  bool Conclued
-);
+}
